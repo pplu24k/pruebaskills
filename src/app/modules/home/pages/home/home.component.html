@@ -1,0 +1,20 @@
+
+<div class="home-page">
+    <div class="home-page-title">
+        <h2>Dragon Skill es una página para reservar mesas de juego, ¡Adelante!</h2>
+    </div>
+    <div class="auth-box">
+        <div class="auth-box-layout">
+            <ng-container *ngIf="authState=='login'; else logUp">
+                <app-login></app-login>
+                <p>¿No tienes una cuenta? <a href="#" (click)="toogleAuthState($event)">Regístrate</a></p>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #logUp>
+    <app-logup></app-logup>
+    <p>¿Ya tienes una cuenta? <a href="#" (click)="toogleAuthState($event)">Inicia sesión</a></p>
+</ng-template>

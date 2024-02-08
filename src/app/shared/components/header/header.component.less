@@ -1,0 +1,38 @@
+@import '../../../variables.less';
+.header{
+    display: flex;
+    background-color: @color-blue;
+    justify-content: space-between;
+    
+    align-items: center;
+    font-size: 1.25rem;
+    color: @color-white;
+    padding: 1rem;
+    @media (min-width: 767px) {
+        padding: 1rem 2rem;
+    }
+    &--img-box{
+        width: 150px;
+        display: flex;
+
+        &:first-child{
+            justify-content: start;
+
+        }
+        &:last-child{
+            justify-content: end;
+        }
+        &>img{
+        
+            max-width: 50px;
+            
+            @media (min-width: 767px) {
+                max-width: 150px;
+                max-height: 100px;
+            }
+
+        }
+    }
+
+
+}

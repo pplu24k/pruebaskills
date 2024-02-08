@@ -1,0 +1,36 @@
+
+<div class="reservation-form">
+    <div class="container">
+        <h2>Hacer una reserva</h2>
+        <form [formGroup]="reservationForm">
+            <div class="row">
+                <div class="col-6">
+                    <label for="startDate">Fecha de inicio</label>
+                    <input formControlName="startDate" class="form-control" type="datetime-local" name="startDate" id="startDate">
+                </div>
+                <div class="col-6">
+                    <label for="endDate">Fecha de final</label>
+                    <input formControlName="endDate" class="form-control" type="datetime-local" name="endDate" id="endDate">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="tableSize">Tamaño de mesa</label>
+                    <select formControlName="table" class="form-control" name="tableSize" id="tableSize">
+                        <option [value]="size" *ngFor="let size of tableSizes">{{size.width}} x {{size.height}}</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="game">Selecciona el juego</label>
+                    <select formControlName="game" class="form-control" name="game" id="game" (change)="selectTableForAGame()">
+                        <option [value]="game.id" *ngFor="let game of games">{{game.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+    
+    
+        </form>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.table{
+    border: 5px solid green;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(165, 42, 42, 0.295);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5px;
+    @media (min-width: 768px) {
+        font-size: 2px;
+    }
+    @media (min-width: 992px) {
+        font-size: 4px;
+    }
+    &>span{
+        font-size: 1.125rem;
+    }
+    &.reserved{
+        border: 5px solid red;
+    }
+}
