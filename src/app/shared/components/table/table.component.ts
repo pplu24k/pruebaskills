@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Table } from '../../../../core/models/Table.interface';
+import { Table } from '../../../core/models/Table.interface';
 
 @Component({
   selector: 'app-table',
@@ -10,6 +10,7 @@ export class TableComponent implements OnInit{
 
 
   @Input() table!: Table;
+  
 
 
   ngOnInit(): void {

@@ -16,6 +16,7 @@ export class BookingComponent  implements OnInit{
   tables: Array<Table> = []
 
 
+  
 
 
   private loadTables = () => {

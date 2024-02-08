@@ -1,0 +1,35 @@
+
+<div class="container">
+    <h3>Listado de juegos</h3>
+    <table class="table">
+        <thead>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Ancho de tablero
+            </th>
+            <th>
+                Alto de tablero
+            </th>
+            <th>
+                Mínimo de jugadores
+            </th>
+            <th>
+                Máximo de jugadores
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let game of games">
+                <td>{{game.name}}</td>
+                <td>{{game.widthNeeded}}</td>
+                <td>{{game.heightNeeded}}</td>
+                <td>{{game.minPlayers}}</td>
+                <td>{{game.maxPlayers}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+

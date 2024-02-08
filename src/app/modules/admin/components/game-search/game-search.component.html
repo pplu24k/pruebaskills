@@ -1,0 +1,13 @@
+
+
+<div>
+    <div class="container">
+        <form (submit)="onSearch($event)">
+            <h3>Buscar juego:</h3>
+            <div class="d-flex">
+                <input type="search" placeholder="Nombre del juego" id="searchGame" name="searchGame" class="form-control w-25" [(ngModel)]="search">
+                <input type="submit" class="btn btn-primary" value="Buscar">
+            </div>
+        </form>
+    </div>
+</div>

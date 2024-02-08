@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { TableService } from '../../../../shared/services/table/table.service';
-import { Size } from '../../../../core/models/Size.interface';
+import { Component, Input, OnInit } from '@angular/core';
+import { TableService } from '../../services/table/table.service';
+import { Size } from '../../../core/models/Size.interface';
 import { Observable } from 'rxjs';
-import { GameService } from '../../../../shared/services/game/game.service';
-import { Game } from '../../../../core/models/Game.interface';
+import { GameService } from '../../services/game/game.service';
+import { Game } from '../../../core/models/Game.interface';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { Table } from '../../../core/models/Table.interface';
 
 @Component({
   selector: 'app-reservation-form',
@@ -21,6 +22,8 @@ export class ReservationFormComponent implements OnInit{
     reservationForm: UntypedFormGroup = new UntypedFormGroup({})
 
   tableSizes: Array<Size> = []
+
+  @Input() selectedTable!: Table
 
   games: Array<Game> = []
   private loadTableSizes(){

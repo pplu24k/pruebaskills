@@ -1,0 +1,12 @@
+    <div class="reservation-container">
+            
+        <app-reservation-form [selectedTable]="selectedTable"></app-reservation-form>
+    </div>
+    <div class="tables-section container">
+        <h2>Mesas de juego</h2>
+
+        <div class="tables-section-grid">
+            <app-table [table]="table" *ngFor="let table of tables" (click)="selectTable(table)"></app-table>
+        </div>
+
+    </div>

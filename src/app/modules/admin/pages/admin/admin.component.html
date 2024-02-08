@@ -1,0 +1,32 @@
+<div class="admin-page">
+    
+    <h2>Administración</h2>
+
+    <div>
+        <app-game-form></app-game-form>
+    </div>
+    <div>
+        <app-game-search (searchString)="onGameSearch($event)"></app-game-search>
+    </div>
+    <div>
+        <app-game-list [games]="games | gameSearch:searchStr" ></app-game-list>
+    </div>
+    <div>
+        <app-table-form></app-table-form>
+    </div>
+    <div class="tables-section">
+        <div class="container">
+            <h3>Mesas:</h3>
+            <div class="tables-section-grid">
+                <app-table [table]="table" *ngFor="let table of tables"></app-table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+<app-footer creatorName="Jose Luis 19" creationDate="07/02/2024" legalInformationLink="#" accesibilityLink="#"></app-footer>

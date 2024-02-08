@@ -1,18 +1,15 @@
 
 <div class="booking-page">
     
-    <div class="reservation-container">
-        
-        <app-reservation-form></app-reservation-form>
-    </div>
-    <div class="tables-section container">
-        <h2>Mesas de juego</h2>
 
-        <div class="tables-section-grid">
-            <app-table [table]="table" *ngFor="let table of tables"></app-table>
-        </div>
-
+   
+    <div class="table-search-container">
+        <app-table-search></app-table-search>
     </div>
+    <app-reservation [tables]="tables"></app-reservation>
+
+
+
 </div>
 
 
