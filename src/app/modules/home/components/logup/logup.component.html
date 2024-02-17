@@ -1,23 +1,43 @@
 <div class="logup-comp">
 
     <div class="container">
-        <form>
+        <form (ngSubmit)="logup($event)"  [formGroup]="formLogUp">
 
             <div class="form-group">
                 <label for="lu-email">Email</label>
-                <input id="lu-email" type="email" class="form-control">
+                <input formControlName="email" id="lu-email" type="email" class="form-control">
+                <span *ngIf="(formLogUp.get('email')?.hasError('email') || formLogUp.get('email')?.hasError('required') )&& formLogUp.get('email')?.touched">
+                    Por favor, ingresa un correo electrónico válido.
+                </span>
             </div>
+
             <div class="form-group">
                 <label for="lu-name">Nombre y apellidos</label>
-                <input id="lu-name" type="email" class="form-control">
+                <input formControlName="fullName" id="lu-name" type="email" class="form-control">
+                <span *ngIf="formLogUp.get('fullName')?.hasError('required') && formLogUp.get('fullName')?.touched">
+                    Este campo es obligatorio.
+                </span>
             </div>
             <div class="form-group">
                 <label for="lu-pass">Contraseña</label>
-                <input id="lu-pass" type="password" class="form-control">
+                <input formControlName="password1" id="lu-pass" type="password" class="form-control">
+                <span *ngIf="formLogUp.get('password1')?.hasError('required') && formLogUp.get('password1')?.touched">
+                    Este campo es obligatorio.
+                </span>
+                <span *ngIf="formLogUp.get('password1')?.hasError('minlength') && formLogUp.get('password1')?.touched">
+                    La contraseña debe tener al menos 6 caracteres.
+                </span>
+                <span *ngIf="formLogUp.get('password1')?.hasError('maxlength') && formLogUp.get('password1')?.touched">
+                    La contraseña no puede tener más de 12 caracteres.
+                </span>
             </div>
+            
             <div class="form-group">
                 <label for="lu-pass-2">Repite la contraseña</label>
-                <input id="lu-pass-2" type="password" class="form-control">
+                <input formControlName="password2" id="lu-pass-2" type="password" class="form-control">
+                <div *ngIf="formLogUp.hasError('passwordMismatch') && formLogUp.get('password2')?.touched">
+                    Las contraseñas no coinciden.
+                </div>
             </div>
             <div class="form-group mt-3 mb-3 d-flex justify-content-center">
                 <button class="btn btn-primary" type="submit">Registrarse</button>

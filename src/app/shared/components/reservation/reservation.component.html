@@ -1,6 +1,6 @@
-    <div class="reservation-container">
+    <div class="reservation-container" #reservationFormContainer>
             
-        <app-reservation-form [selectedTable]="selectedTable"></app-reservation-form>
+        <app-reservation-form  [selectedTable]="selectedTable" (cancelSelectedTable)="handeCancelSelectedTable()" ></app-reservation-form>
     </div>
     <div class="tables-section container">
         <h2>Mesas de juego</h2>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Table } from '../../../core/models/Table.interface';
 
 @Component({
@@ -8,11 +8,20 @@ import { Table } from '../../../core/models/Table.interface';
 })
 export class ReservationComponent {
 
+  @ViewChild('reservationFormContainer') reservationFormContRef!: ElementRef;
   @Input() tables: Table[] = [];
-  selectedTable!: Table
+  selectedTable!: Table | null
 
   selectTable(table: Table) {
     this.selectedTable = table
+    console.log(table)
+    const reservationForm = this.reservationFormContRef.nativeElement
+    console.log(reservationForm)
+    reservationForm.scrollIntoView()
   }
+
+  handeCancelSelectedTable() {
+   this.selectedTable = null
+    }
 
 }

@@ -8,6 +8,9 @@ import { TableComponent } from './components/table/table.component';
 import { TableSearchComponent } from './components/table-search/table-search.component';
 import { GameSearchPipe } from './pipes/game-search.pipe';
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { NavComponent } from './components/nav/nav.component';
+import { RouterModule } from '@angular/router';
+import { GenericTableComponent } from './components/generic-table/generic-table.component';
 
 
 
@@ -19,12 +22,15 @@ import { ReservationComponent } from './components/reservation/reservation.compo
     TableComponent,
     TableSearchComponent,
     GameSearchPipe,
-    ReservationComponent
+    ReservationComponent,
+    NavComponent,
+    GenericTableComponent
 
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,
@@ -33,7 +39,9 @@ import { ReservationComponent } from './components/reservation/reservation.compo
     TableComponent,
     TableSearchComponent,
     GameSearchPipe,
-    ReservationComponent
+    ReservationComponent,
+    NavComponent,
+    GenericTableComponent
   ]
 })
 export class SharedModule { }

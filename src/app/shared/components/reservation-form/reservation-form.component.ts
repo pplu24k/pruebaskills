@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { TableService } from '../../services/table/table.service';
 import { Size } from '../../../core/models/Size.interface';
 import { Observable } from 'rxjs';
@@ -12,18 +12,34 @@ import { Table } from '../../../core/models/Table.interface';
   templateUrl: './reservation-form.component.html',
   styleUrl: './reservation-form.component.less'
 })
-export class ReservationFormComponent implements OnInit{
+export class ReservationFormComponent implements OnInit, OnChanges{
+
 
 
   constructor(private tableService: TableService,
     private gameService: GameService
     ){}
 
+
+  
+
     reservationForm: UntypedFormGroup = new UntypedFormGroup({})
 
   tableSizes: Array<Size> = []
 
-  @Input() selectedTable!: Table
+  @Input() selectedTable: Table | null = null
+  @Output() cancelSelectedTable =  new EventEmitter<any>();
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedTable']) {
+    console.log('El valor de miPropiedad ha cambiado:', this.selectedTable);
+    }
+}
+
+
+handleCancelSelectedTable() {
+ this.cancelSelectedTable.emit()
+  }
 
   games: Array<Game> = []
   private loadTableSizes(){

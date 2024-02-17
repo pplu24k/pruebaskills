@@ -1,0 +1,18 @@
+
+<div class="container pt-3">
+    <h2>{{title}}</h2>
+    <table class="table">
+        <thead>
+          <tr>
+
+            <th *ngFor="let key of columns">{{ key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data">
+
+            <td *ngFor="let key of columns">{{ row[key] }}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

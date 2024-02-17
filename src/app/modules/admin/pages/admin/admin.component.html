@@ -1,4 +1,6 @@
 <div class="admin-page">
+
+    <app-nav></app-nav>
     
     <h2>Administración</h2>
 
@@ -16,11 +18,11 @@
     </div>
     <div class="tables-section">
         <div class="container">
-            <h3>Mesas:</h3>
-            <div class="tables-section-grid">
-                <app-table [table]="table" *ngFor="let table of tables"></app-table>
-            </div>
+            <app-reservation [tables]="tables"></app-reservation>
         </div>
+    </div>
+    <div class="users-section">
+        <app-generic-table title="Usuarios" [data]="partners"></app-generic-table>
     </div>
 
 

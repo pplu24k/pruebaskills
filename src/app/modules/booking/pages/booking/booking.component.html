@@ -1,6 +1,6 @@
 
 <div class="booking-page">
-    
+    <app-nav *ngIf="isAdmin"></app-nav>
 
    
     <div class="table-search-container">
@@ -8,6 +8,7 @@
     </div>
     <app-reservation [tables]="tables"></app-reservation>
 
+    <app-generic-table title="Reservas que has hecho" [data]="bookings"></app-generic-table>
 
 
 </div>

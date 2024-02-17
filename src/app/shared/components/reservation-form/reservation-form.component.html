@@ -15,18 +15,28 @@
                 </div>
 
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!selectedTable">
                 <div class="col-6">
                     <label for="tableSize">Tamaño de mesa</label>
-                    <select formControlName="table" class="form-control" name="tableSize" id="tableSize">
+                    <select formControlName="table" class="form-control" name="tableSize" id="tableSize" [disabled]="selectedTable == null">
                         <option [value]="size" *ngFor="let size of tableSizes">{{size.width}} x {{size.height}}</option>
+                        
+
                     </select>
                 </div>
-                <div class="col-6">
+                <div class="col-6" >
                     <label for="game">Selecciona el juego</label>
                     <select formControlName="game" class="form-control" name="game" id="game" (change)="selectTableForAGame()">
                         <option [value]="game.id" *ngFor="let game of games">{{game.name}}</option>
                     </select>
+                </div>
+            </div>
+            <div class="row" *ngIf="selectedTable">
+                <div class="col-12">
+                    <div class="p-4">
+                        <span>Quieres reservar la mesa {{selectedTable.id}} de {{selectedTable.width}}x{{selectedTable.height}} </span>
+                        <button class="btn btn-danger" (click)="handleCancelSelectedTable()">Cancelar</button>
+                    </div>
                 </div>
             </div>
             <div class="row mt-4">
