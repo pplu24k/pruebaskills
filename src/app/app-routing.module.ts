@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeModule } from './modules/home/home.module';
 import { authGuardGuard } from './core/guards/auth-guard.guard';
+import { HomeComponent } from './screens/home/home.component';
+import { BookingComponent } from './screens/booking/booking.component';
+import { AdminComponent } from './screens/admin/admin.component';
 
 const routes: Routes = [
+
   {
     path: '',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+    component: HomeComponent,
+    canActivate: [authGuardGuard] 
   },
   {
     path: 'booking',
-    loadChildren: () => import('./modules/booking/booking.module').then(m => m.BookingModule),
-    canActivate: [authGuardGuard]
+    component: BookingComponent,
+    canActivate: [authGuardGuard] 
   },
   {
     path: 'managing',
-    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
-    canActivate: [authGuardGuard]
+    component: AdminComponent,
+    canActivate: [authGuardGuard] 
   },
   {
     path: '**',
