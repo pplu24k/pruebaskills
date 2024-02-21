@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TableService } from '../../../../core/services/table/table.service';
 import { GameService } from '../../../../core/services/game/game.service';
-import { Table } from '../../../../core/models/Table.class';
-import { Game } from '../../../../core/models/Game.class';
+import { Table } from '../../../../core/models/Table.model';
+import { Game } from '../../../../core/models/Game.model';
 
 
 @Component({

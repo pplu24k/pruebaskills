@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TableService } from '../../core/services/table/table.service';
-import { Table } from '../../core/models/Table.class';
-import { Game } from '../../core/models/Game.class';
-import { AuthServiceService } from '../../core/services/authservice/auth-service.service';
+import { Table } from '../../core/models/Table.model';
+import { Game } from '../../core/models/Game.model';
+import { AuthService } from '../../core/services/auth/auth.service';
 import { BookingService } from './services/bookings/booking.service';
-import { Booking } from '../../core/models/Booking.class';
+import { Booking } from '../../core/models/Booking.model';
 
 @Component({
   selector: 'app-booking',
@@ -14,11 +14,11 @@ import { Booking } from '../../core/models/Booking.class';
 export class BookingComponent  implements OnInit{
 
   constructor(private tableService: TableService,
-    private authService: AuthServiceService,
+    private authService: AuthService,
     private bookingService: BookingService){}
-  user: string | null = null
-  isAdmin = false
-  tables: Array<Table> = []
+    user: string | null = null
+    isAdmin = false
+    tables: Array<Table> = []
     bookings: Booking[] = []
 
   
@@ -36,8 +36,8 @@ export class BookingComponent  implements OnInit{
 
   ngOnInit(): void {
     this.loadTables()
-    const currentUser = this.authService.currentUser
-    this.isAdmin = (currentUser)?currentUser?.isAdmin():false
+    const currentUser = this.authService.user
+    this.isAdmin = currentUser?.isAdmin as boolean
     const email = currentUser?.email as string
     this.user = email
     this.bookingService.getBookingsOf(email).subscribe(data => {

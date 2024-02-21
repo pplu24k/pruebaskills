@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Game } from '../../models/Game.class';
+import { Game } from '../../models/Game.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class GameService {
 
   getGames():Observable<Array<Game>>{
 
-    return this.http.get('assets/data.json').pipe(
+    return this.http.get('/api/proxy/games').pipe(
       map(({games} : any) => {
         return games
       })

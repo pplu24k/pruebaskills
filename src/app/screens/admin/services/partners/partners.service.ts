@@ -11,7 +11,7 @@ export class PartnersService {
   
   getPartners():Observable<Array<any>>{
 
-    return this.http.get('assets/data.json').pipe(
+    return this.http.get('/api/proxy/users').pipe(
       map(({users} : any) => {
         return users.filter((user:any) => {return user.role === "partner" })
       })

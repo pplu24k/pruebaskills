@@ -23,11 +23,11 @@ import { ReservationFormComponent } from './core/components/reservation-form/res
 import { TableComponent } from './core/components/table/table.component';
 import { TableSearchComponent } from './core/components/table-search/table-search.component';
 import { HeaderComponent } from './core/components/header/header.component';
-import { AuthServiceService } from './core/services/authservice/auth-service.service';
 import { BookingService } from './screens/booking/services/bookings/booking.service';
 import { GameService } from './core/services/game/game.service';
-import { PartnersService } from './core/services/partnersservice/partners.service';
+import { PartnersService } from './screens/admin/services/partners/partners.service';
 import { TableService } from './core/services/table/table.service';
+import { AuthService } from './core/services/auth/auth.service';
 
 
 
@@ -66,7 +66,7 @@ import { TableService } from './core/services/table/table.service';
 
   ],
   providers: [
-    AuthServiceService,
+    AuthService,
     BookingService,
     GameService,
     PartnersService,

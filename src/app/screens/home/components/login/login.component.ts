@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { LoginRequestDTO } from '../../services/access/dto/LoginRequestDTO.interface';
-import { AuthServiceService } from '../../../../core/services/authservice/auth-service.service';
+import { LoginRequestDTO } from '../../services/access/dto/LoginRequestDTO';
 import { Router } from '@angular/router';
 import { AccessService } from '../../services/access/access.service';
+
+type loginForm = LoginRequestDTO
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,14 @@ import { AccessService } from '../../services/access/access.service';
 })
 export class LoginComponent {
 
-  userToLogin : LoginRequestDTO = {
+  userToLogin : loginForm = {
     email: '',
     pass: ''
   }
 
   loginFailed:boolean = false
 
-  constructor(private accessService: AccessService, private router: Router){
+  constructor(private accessService: AccessService, private _router: Router){
 
 
   }
@@ -27,8 +28,11 @@ export class LoginComponent {
     
     event.preventDefault()
 
-    if(!this.accessService.doLogin(this.userToLogin)){
+    if(!this.accessService.doLogin(this.userToLogin.email, this.userToLogin.pass)){
       this.loginFailed = true
+    }
+    else{
+      this._router.navigate(["/","booking"])
     }
 
 

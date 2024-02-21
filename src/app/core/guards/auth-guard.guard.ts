@@ -1,22 +1,22 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthServiceService } from '../services/authservice/auth-service.service';
-import { User } from '../models/User.class';
+import { AuthService } from '../services/auth/auth.service';
+import { User } from '../models/User.model';
 
 export const authGuardGuard: CanActivateFn = (route, state) => {
 
   const router = inject(Router);
-  const authService = inject(AuthServiceService)
-  console.log(authService.currentUser)
-  if(authService.currentUser != null){
-    if(authService.currentUser.isAdmin() ){
+  const authService = inject(AuthService)
+  console.log(authService.user)
+  if(authService.user != null){
+    if(authService.user.isAdmin ){
       return true
     }
-    if( !authService.currentUser.isAdmin() && route.url[0].path === 'managing'){
+    if( !authService.user.isAdmin && route.url[0].path === 'managing'){
       router.navigate(['/','booking'])
       return false
     }
-    if( !authService.currentUser.isAdmin() && route.url[0].path === 'booking'){
+    if( !authService.user.isAdmin && route.url[0].path === 'booking'){
       return true
     }
     

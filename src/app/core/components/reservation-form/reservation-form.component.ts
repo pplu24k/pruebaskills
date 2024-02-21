@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { TableService } from '../../services/table/table.service';
-import { Size } from '../../../core/models/Size.interface';
+import { Size } from '../../models/Size.model';
 import { Observable } from 'rxjs';
 import { GameService } from '../../services/game/game.service';
-import { Game } from '../../models/Game.class';
+import { Game } from '../../models/Game.model';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { Table } from '../../models/Table.class';
+import { Table } from '../../models/Table.model';
 
 @Component({
   selector: 'app-reservation-form',

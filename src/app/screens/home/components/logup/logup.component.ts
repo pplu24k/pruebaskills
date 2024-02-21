@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SignInRequestDTO } from '../../services/access/dto/SignInRequestDTO.interface';
+import { SignInRequestDTO } from '../../services/access/dto/SignInRequestDTO';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { AuthServiceService } from '../../../../core/services/authservice/auth-service.service';
 import { AccessService } from '../../services/access/access.service';
+
+interface singInFormData extends SignInRequestDTO {
+  pass2: string
+}
 
 @Component({
   selector: 'app-logup',
@@ -19,14 +22,9 @@ export class LogupComponent implements OnInit{
 }
 
   formLogUp: UntypedFormGroup = new UntypedFormGroup({});
-
+  
   constructor(private accessService: AccessService){}
-  userToSingIn: SignInRequestDTO = {
-    email: '',
-    fullName: '',
-    pass1: '',
-    pass2: ''
-  }
+
 
   ngOnInit(): void {
     this.formLogUp = new UntypedFormGroup(
@@ -59,12 +57,7 @@ export class LogupComponent implements OnInit{
 
   logup(event:any){
     event.preventDefault()
-    console.log(this.formLogUp)
-    this.userToSingIn = this.formLogUp.value
-
-    this.accessService.doLogUp(this.userToSingIn)
-
-    
+    this.accessService.doLogUp(this.formLogUp.value as singInFormData)
 
   }
 

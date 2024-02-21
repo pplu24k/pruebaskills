@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { Table } from '../../models/Table.class';
+import { Table } from '../../models/Table.model';
 
 @Component({
   selector: 'app-reservation',

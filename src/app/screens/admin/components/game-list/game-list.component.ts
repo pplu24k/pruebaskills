@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Game } from '../../../../core/models/Game.class';
+import { Game } from '../../../../core/models/Game.model';
 
 @Component({
   selector: 'app-game-list',

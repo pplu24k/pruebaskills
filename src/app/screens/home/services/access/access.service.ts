@@ -1,37 +1,32 @@
 import { Injectable } from '@angular/core';
-import { LoginRequestDTO } from './dto/LoginRequestDTO.interface';
-import { SignInRequestDTO } from './dto/SignInRequestDTO.interface';
+import { LoginRequestDTO } from './dto/LoginRequestDTO';
+import { SignInRequestDTO } from './dto/SignInRequestDTO';
 import { Router } from '@angular/router';
-import { AuthServiceService } from '../../../../core/services/authservice/auth-service.service';
-import { User } from '../../../../core/models/User.class';
+import { AuthService } from '../../../../core/services/auth/auth.service';
+import { User } from '../../../../core/models/User.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccessService {
 
-  constructor(private router: Router, private authService: AuthServiceService){
+  constructor(private _router: Router, private _authService: AuthService){
 
 
   }
 
-  doLogin(userToLogin: LoginRequestDTO):boolean{
+  doLogin(email: string, pass: string):boolean{
 
-    if(userToLogin.email==='admin' && userToLogin.pass === 'admin'){
+    if(email==='admin' && pass === 'admin'){
       const token = "admin"
-      sessionStorage.setItem("user",userToLogin.email)
-      sessionStorage.setItem("token",token)
-      this.authService.changeUser(new User("admin","admin"))
-      this.router.navigate(["/","booking"])
+      this._authService.user = new User("admin",true)
       return true
     }
  
-    if(userToLogin.email==='partner' && userToLogin.pass === 'partner'){
+    
+    if(email==='partner' && pass === 'partner'){
       const token = "partner"
-      sessionStorage.setItem("user",userToLogin.email)
-      sessionStorage.setItem("token",token)
-      this.authService.changeUser(new User("partner","partner"))
-      this.router.navigate(["/","booking"])
+      this._authService.user = new User("partner",false)
       return true
     }
 
@@ -40,7 +35,7 @@ export class AccessService {
   }
 
   doLogUp(userToSave: SignInRequestDTO){
-
+    
     return true
 
   }

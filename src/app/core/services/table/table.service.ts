@@ -1,27 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Table } from '../../models/Table.class';
-import { Size } from '../../../core/models/Size.interface';
+import { Table } from '../../models/Table.model';
+import { Size } from '../../models/Size.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableService {
-  private jsonUrl = 'assets/data.json';
+ 
   
   constructor(private http: HttpClient) { }
 
   getData(): Observable<Table[]> {
-    return this.http.get(this.jsonUrl)      .pipe(
+    return this.http.get('/api/proxy/tables').pipe(
       map(({ tables }: any) => {
         return tables
       })
     ) as Observable<Table[]>;
   }
 
+
   getSizesOfTables(): Observable<Size[]> {
-    return this.http.get(this.jsonUrl)      .pipe(
+    return this.http.get('/api/proxy/tables')      .pipe(
       map(({ tables }: any) => {
         const uniqueSizes:Size[] = []
         tables.forEach((table:Table) => {
