@@ -1,4 +1,13 @@
     <div class="reservation-container" #reservationFormContainer>
+        <div class="reservation-form mb-4 mt-4">
+            <div class="container">
+                <h2>Consultar mesas</h2>
+                <form>
+                    <label for="¿En que momento quieres consultar el estado de las mesas?"></label>
+                    <input type="datetime-local" class="form-control" (change)="updateDate($event)">
+                </form>
+            </div>
+        </div>
             
         <app-reservation-form  [selectedTable]="selectedTable" (cancelSelectedTable)="handeCancelSelectedTable()" ></app-reservation-form>
     </div>
@@ -6,7 +15,7 @@
         <h2>Mesas de juego</h2>
 
         <div class="tables-section-grid">
-            <app-table [table]="table" *ngFor="let table of tables" (click)="selectTable(table)"></app-table>
+            <app-table [showIfIsReserved]="true" [table]="table" *ngFor="let table of tables" (click)="selectTable(table)"></app-table>
         </div>
 
     </div>

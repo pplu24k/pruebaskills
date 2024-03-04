@@ -10,7 +10,7 @@ export class TableComponent implements OnInit{
 
 
   @Input() table!: Table;
-  
+  @Input() showIfIsReserved!:boolean
 
 
   ngOnInit(): void {

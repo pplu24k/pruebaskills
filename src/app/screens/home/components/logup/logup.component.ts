@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { SignInRequestDTO } from '../../services/access/dto/SignInRequestDTO';
+
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AccessService } from '../../services/access/access.service';
 
-interface singInFormData extends SignInRequestDTO {
-  pass2: string
+export interface singInFormData  {
+  email: string,
+  fullName: string
+  password: string
+  password1: string
+  password2: string
 }
 
 @Component({
@@ -22,7 +26,8 @@ export class LogupComponent implements OnInit{
 }
 
   formLogUp: UntypedFormGroup = new UntypedFormGroup({});
-  
+  logupError: boolean = false
+  logupDone: boolean = false
   constructor(private accessService: AccessService){}
 
 
@@ -57,7 +62,19 @@ export class LogupComponent implements OnInit{
 
   logup(event:any){
     event.preventDefault()
-    this.accessService.doLogUp(this.formLogUp.value as singInFormData)
+
+    this.accessService.doLogUp(this.formLogUp.value as singInFormData).subscribe(data => {
+      console.log("resultado en el front: " + data)
+      if(data){
+        this.logupDone = true
+        this.logupError = false
+      }
+      else{
+        this.logupError = true
+        this.logupDone = false
+      }
+
+    })
 
   }
 

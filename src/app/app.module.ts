@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './screens/home/home.component';
 import { LoginComponent } from './screens/home/components/login/login.component';
 import { LogupComponent } from './screens/home/components/logup/logup.component';
@@ -21,13 +21,14 @@ import { NavComponent } from './core/components/nav/nav.component';
 import { ReservationComponent } from './core/components/reservation/reservation.component';
 import { ReservationFormComponent } from './core/components/reservation-form/reservation-form.component';
 import { TableComponent } from './core/components/table/table.component';
-import { TableSearchComponent } from './core/components/table-search/table-search.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { BookingService } from './screens/booking/services/bookings/booking.service';
 import { GameService } from './core/services/game/game.service';
 import { PartnersService } from './screens/admin/services/partners/partners.service';
 import { TableService } from './core/services/table/table.service';
 import { AuthService } from './core/services/auth/auth.service';
+import { AuthInterceptor } from './core/interceptors/Auth-interceptor';
+import { EditGameComponent } from './screens/edit-game/edit-game.component';
 
 
 
@@ -51,7 +52,7 @@ import { AuthService } from './core/services/auth/auth.service';
     ReservationComponent,
     ReservationFormComponent,
     TableComponent,
-    TableSearchComponent,
+    EditGameComponent,
 
 
   ],
@@ -70,7 +71,12 @@ import { AuthService } from './core/services/auth/auth.service';
     BookingService,
     GameService,
     PartnersService,
-    TableService
+    TableService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

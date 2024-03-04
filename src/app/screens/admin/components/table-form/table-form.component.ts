@@ -13,6 +13,36 @@ import { Game } from '../../../../core/models/Game.model';
 export class TableFormComponent{
 
 
+tableWidth!: number;
+tableHeight!: number;
+error = false
+savedMsg = ''
+
+constructor(private tableService: TableService){}
+
+
+saveTable($event:any){
+
+  $event.preventDefault()
+  console.log(this.tableWidth,this.tableHeight)
+  if(this.tableWidth && this.tableHeight){
+
+    this.tableService.store(this.tableWidth,this.tableHeight).subscribe(response => {
+      console.log(response)
+      this.savedMsg = `Tabla de ${this.tableWidth} x ${this.tableHeight} creada.`
+    })
+  }
+  else{
+    this.savedMsg = ''
+    this.error= true
+  }
+
+
+
+}
+
+
+
 
 
 }

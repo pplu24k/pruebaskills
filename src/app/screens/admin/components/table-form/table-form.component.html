@@ -1,17 +1,19 @@
 
 
 <div class="game-form">
-    <div class="container">
+    <div class="container mt-4">
+        <p class="alert alert-primary" *ngIf="savedMsg != ''">{{savedMsg}}</p>
+        <p class="alert alert-danger" *ngIf="error">Se ha producido un error al guardar la mesa</p>
         <h3>Crear nueva mesa</h3>
-        <form>
+        <form (ngSubmit)="saveTable($event)">
             <div class="row">
                 <div class="col-6">
-                    <label for="tableWidth">Ancho de la mesa</label>
-                    <input type="text" class="form-control" id="tableWidth">
+                    <label for="tableWidth" >Ancho de la mesa</label>
+                    <input type="text" name="tableWidth" class="form-control" id="tableWidth" [(ngModel)]="tableWidth">
                 </div>
                 <div class="col-6">
-                    <label for="tableWidth">Alto de la mesa</label>
-                    <input type="text" class="form-control" id="tableHeight">
+                    <label for="tableHeight" >Alto de la mesa</label>
+                    <input type="text" name="tableHeight" class="form-control" id="tableHeight" [(ngModel)]="tableHeight">
                 </div>
             </div>
             <div class="row">

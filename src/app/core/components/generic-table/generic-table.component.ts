@@ -17,13 +17,12 @@ export class GenericTableComponent implements OnInit, OnChanges{
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    // Verifica si hay cambios en la entrada 'data'
+
     if (changes["data"]) {
-      // Ejecuta la lógica cuando se recibe el nuevo valor para 'data'
-
-      this.columns = Object.keys(this.data[0]);
-
-      console.log(Object.keys(this.data[0]));
+      if(this.data[0] != null){
+        this.columns = Object.keys(this.data[0]);
+      }
+      
     }
   }
   

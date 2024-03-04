@@ -1,10 +1,12 @@
+import { User } from "./User.model";
+
 export class Booking {
     id: number;
-    user: string;
+    user: User |null;
     startIn: string;
     endIn: string;
 
-    constructor(id: number, user: string, startIn: string, endIn: string) {
+    constructor(id: number, user: User | null, startIn: string, endIn: string) {
         this.id = id;
         this.user = user;
         this.startIn = startIn;

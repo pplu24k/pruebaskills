@@ -1,6 +1,10 @@
 <div class="logup-comp">
 
     <div class="container">
+
+        <div class="alert alert-primary" *ngIf="logupDone">Se ha registrado correctamente, puede loguearse.</div>
+        <div class="alert alert-danger" *ngIf="logupError">Error al registrarse.</div>
+
         <form (ngSubmit)="logup($event)"  [formGroup]="formLogUp">
 
             <div class="form-group">

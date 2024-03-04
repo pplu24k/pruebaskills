@@ -2,37 +2,41 @@
 
 <div class="game-form">
     <div class="container">
-        <h3>Crear muevo juego</h3>
-        <form>
+        <div class="alert alert-primary" *ngIf="savedMsg != ''">{{savedMsg}}</div>
+        <div class="alert alert-danger" *ngIf="saveError">Error al guardar el juego.</div>
+        <h3 *ngIf="!gameToEdit">Crear muevo juego</h3>
+        <h3 *ngIf="gameToEdit">Editar {{gameToEdit.name}}</h3>
+        <form (ngSubmit)="saveGame($event)"  [formGroup]="gameForm">
             <div class="row">
                 <div class="col-12">
-                    <label for="gameName">Nombre del juego</label>
-                    <input type="text" class="form-control" id="gameName">
+                    <label for="name">Nombre del juego</label>
+                    <input formControlName="name" type="text" class="form-control" id="name">
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <label for="minPlayers">Mínimo de jugadores</label>
-                    <input type="text" class="form-control" id="minPlayers">
+                    <input formControlName="minPlayers" type="number" class="form-control" id="minPlayers">
                 </div>
                 <div class="col-6">
                     <label for="maxPlayers">Máximo de jugadores</label>
-                    <input type="text" class="form-control" id="maxPlayers">
+                    <input formControlName="maxPlayers" type="number" class="form-control" id="maxPlayers">
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <label for="widthNeeded">Ancho del tablero</label>
-                    <input type="text" class="form-control" id="widthNeeded">
+                    <input formControlName="widthNeeded" type="number" class="form-control" id="widthNeeded">
                 </div>
                 <div class="col-6">
                     <label for="heightNeeded">Alto del tablero</label>
-                    <input type="text" class="form-control" id="heightNeeded">
+                    <input formControlName="heightNeeded" type="number" class="form-control" id="heightNeeded">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary mt-3 mb-3">Añadir</button>
+                    <button *ngIf="!gameToEdit" class="btn btn-primary mt-3 mb-3">Añadir</button>
+                    <button *ngIf="gameToEdit" class="btn btn-primary mt-3 mb-3">Editar</button>
                 </div>
             </div>
         </form>

@@ -4,11 +4,10 @@
 
    
     <div class="table-search-container">
-        <app-table-search></app-table-search>
     </div>
-    <app-reservation [tables]="tables"></app-reservation>
+    <app-reservation [tables]="(tables | async)??[]"></app-reservation>
 
-    <app-generic-table title="Reservas que has hecho" [data]="bookings"></app-generic-table>
+    <app-generic-table title="Reservas que has hecho" [data]="(bookings| async)??[]"></app-generic-table>
 
 
 </div>

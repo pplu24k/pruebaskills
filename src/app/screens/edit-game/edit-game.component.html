@@ -1,0 +1,16 @@
+
+
+
+
+<div class="container">
+
+
+
+    <h2 class="text-center">Edición de juego</h2>
+
+    <app-game-form [gameToEdit]="game" *ngIf="game"></app-game-form>
+    <p *ngIf="!game">Cargando...</p>
+
+
+    <a [routerLink]="['/','managing']" class="btn btn-danger">Volver</a>
+</div>

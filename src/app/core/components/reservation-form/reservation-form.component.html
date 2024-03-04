@@ -2,8 +2,13 @@
 <div class="reservation-form mb-4 mt-4">
     <div class="container">
         <h2>Hacer una reserva</h2>
-        
-        <form [formGroup]="reservationForm">
+        <div class="alert alert-danger" *ngIf="errorDoingBooking" >
+            Error al hacer la reserva
+        </div>
+        <div class="alert alert-primary" *ngIf="bookingDone" >
+            Reserva hecha correctamente
+        </div>
+        <form [formGroup]="reservationForm" (ngSubmit)="makeReservation($event)">
             <div class="row">
                 <div class="col-6">
                     <label for="startDate">Fecha de inicio</label>
@@ -19,7 +24,7 @@
                 <div class="col-6">
                     <label for="tableSize">Tamaño de mesa</label>
                     <select formControlName="table" class="form-control" name="tableSize" id="tableSize" [disabled]="selectedTable == null">
-                        <option [value]="size" *ngFor="let size of tableSizes">{{size.width}} x {{size.height}}</option>
+                        <option [value]="table.id" *ngFor="let table of tables | async">Mesa {{table.id}} - {{table.width}} x {{table.height}}</option>
                         
 
                     </select>
@@ -27,7 +32,7 @@
                 <div class="col-6" >
                     <label for="game">Selecciona el juego</label>
                     <select formControlName="game" class="form-control" name="game" id="game" (change)="selectTableForAGame()">
-                        <option [value]="game.id" *ngFor="let game of games">{{game.name}}</option>
+                        <option [value]="game.id" *ngFor="let game of games | async">{{game.name}}</option>
                     </select>
                 </div>
             </div>
@@ -41,10 +46,9 @@
             </div>
             <div class="row mt-4">
                 <div class="col">
-                    <div class="btn btn-primary">Reservar</div>
+                    <button class="btn btn-primary">Reservar</button>
                 </div>
             </div>
-
         </form>
     </div>
 </div>

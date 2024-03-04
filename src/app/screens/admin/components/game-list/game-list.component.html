@@ -26,6 +26,8 @@
                 <td>{{game.heightNeeded}}</td>
                 <td>{{game.minPlayers}}</td>
                 <td>{{game.maxPlayers}}</td>
+                <td><a [routerLink]="['game',game.id]">Editar</a></td>
+
             </tr>
         </tbody>
     </table>

@@ -11,21 +11,26 @@
         <app-game-search (searchString)="onGameSearch($event)"></app-game-search>
     </div>
     <div>
-        <app-game-list [games]="games | gameSearch:searchStr" ></app-game-list>
+        <app-game-list [games]="(games | async) ?? [] | gameSearch:searchStr" ></app-game-list>
     </div>
     <div>
         <app-table-form></app-table-form>
     </div>
     <div class="tables-section">
-        <div class="container">
-            <app-reservation [tables]="tables"></app-reservation>
+        <div class="container tables-section-grid">
+            <app-table [showIfIsReserved]="false" [table]="table" *ngFor="let table of (tables | async)" (click)="showDialog(table)"></app-table>
         </div>
     </div>
-    <div class="users-section">
+    <!-- <div class="users-section">
         <app-generic-table title="Usuarios" [data]="partners"></app-generic-table>
-    </div>
+    </div> -->
 
-
+    <dialog  #deleteTableModal>
+        <h2>Eliminar mesa </h2>
+        
+        <button class="btn btn-info m-2ks" (click)="closeDialog()">Cerrar</button>
+        <button class="btn btn-danger m-2" (click)="removeTable()">Eliminar</button>
+      </dialog>
 
 
 </div>

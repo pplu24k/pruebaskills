@@ -4,6 +4,7 @@ import { authGuardGuard } from './core/guards/auth-guard.guard';
 import { HomeComponent } from './screens/home/home.component';
 import { BookingComponent } from './screens/booking/booking.component';
 import { AdminComponent } from './screens/admin/admin.component';
+import { EditGameComponent } from './screens/edit-game/edit-game.component';
 
 const routes: Routes = [
 
@@ -20,6 +21,11 @@ const routes: Routes = [
   {
     path: 'managing',
     component: AdminComponent,
+    canActivate: [authGuardGuard] 
+  },
+  {
+    path: 'managing/game/:id',
+    component: EditGameComponent,
     canActivate: [authGuardGuard] 
   },
   {
